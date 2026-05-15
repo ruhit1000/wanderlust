@@ -21,6 +21,9 @@ const Navbar = () => {
           <li className={pathname === "/my-bookings" ? "text-blue-500 underline" : ""}>
             <Link href="/my-bookings">My Bookings</Link>
           </li>
+          <li className={pathname === "/add-destination" ? "text-blue-500 underline" : ""}>
+            <Link href="/add-destination">Add Destination</Link>
+          </li>
         </ul>
       </div>
       <div>
@@ -29,6 +32,7 @@ const Navbar = () => {
           alt={"Wanderlust Logo"}
           width={130}
           height={130}
+          className="h-auto w-auto"
         />
       </div>
       <div>
