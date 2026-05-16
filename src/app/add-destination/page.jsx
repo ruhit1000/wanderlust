@@ -1,10 +1,12 @@
 'use client';
 import { FieldError, Input, Label, TextField, Select, ListBox, TextArea, Button, Spinner } from "@heroui/react";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 
 const AddDestinationPage = () => {
 
+    const router = useRouter();
     const [loading, setLoading] = useState(false);
 
     const handleSubmit = async (e) => {
@@ -24,6 +26,7 @@ const AddDestinationPage = () => {
         if (result?.acknowledged) {
             toast.success("Destination added successfully!");
             e.target.reset();
+            router.push("/destinations");
         }
         setLoading(false);
     }

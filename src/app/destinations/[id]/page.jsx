@@ -13,6 +13,7 @@ import {
   ArrowRight,
 } from "@gravity-ui/icons";
 import EditDestination from "@/components/ui/EditDestination";
+import DeletePackage from "@/components/ui/DeletePackage";
 
 const DestinationDetailsPage = async ({ params }) => {
   const { id } = await params;
@@ -43,10 +44,7 @@ const DestinationDetailsPage = async ({ params }) => {
         </Link>
         <div className="flex gap-3">
           <EditDestination destination={destination} />
-          <Button variant="danger">
-            <TrashBin className="w-4 h-4" />
-            Delete
-          </Button>
+          <DeletePackage packageName={destinationName} id={id} />
         </div>
       </div>
 
