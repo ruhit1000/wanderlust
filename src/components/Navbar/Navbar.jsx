@@ -33,6 +33,7 @@ const Navbar = () => {
           width={130}
           height={130}
           className="h-auto w-auto"
+          loading="eager"
         />
       </div>
       <div>
