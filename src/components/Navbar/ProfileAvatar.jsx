@@ -1,6 +1,7 @@
 import { authClient } from "@/lib/auth-client";
 import { ArrowRightFromSquare, Gear, Persons } from "@gravity-ui/icons";
 import { Avatar, Dropdown, Label } from "@heroui/react";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import React from "react";
 
@@ -46,7 +47,7 @@ const ProfileAvatar = ({ user }) => {
           <Dropdown.Item id="dashboard" textValue="Dashboard">
             <Label>Dashboard</Label>
           </Dropdown.Item>
-          <Dropdown.Item id="profile" textValue="Profile">
+          <Dropdown.Item id="profile" textValue="Profile" onClick={() => redirect('/my-profile')}>
             <Label>Profile</Label>
           </Dropdown.Item>
           <Dropdown.Item id="settings" textValue="Settings">
