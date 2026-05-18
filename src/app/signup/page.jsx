@@ -10,14 +10,22 @@ import {
   Input,
   InputGroup,
   Label,
+  Separator,
   TextField,
 } from "@heroui/react";
+import { Icon } from "@iconify/react";
 import { redirect } from "next/navigation";
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 
 const SignUpPage = () => {
   const [isVisible, setIsVisible] = useState(false);
+
+  const handleGoogleSignIn = async () => {
+    const data = await authClient.signIn.social({
+      provider: "google",
+    })
+  }
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -31,7 +39,7 @@ const SignUpPage = () => {
       name,
       image,
     });
-    
+
     if (data) {
       toast.success("Account created successfully!");
       setTimeout(() => {
@@ -48,8 +56,12 @@ const SignUpPage = () => {
       <div className="w-full max-w-md bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
         <div className="p-8 md:p-10">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Create Account</h1>
-            <p className="text-gray-500 text-sm">Start your adventure with Wanderlust!</p>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">
+              Create Account
+            </h1>
+            <p className="text-gray-500 text-sm">
+              Start your adventure with Wanderlust!
+            </p>
           </div>
 
           <Form className="w-full" onSubmit={onSubmit}>
@@ -65,25 +77,36 @@ const SignUpPage = () => {
                     return null;
                   }}
                 >
-                  <Label className="text-sm font-medium text-gray-700">Name</Label>
+                  <Label className="text-sm font-medium text-gray-700">
+                    Name
+                  </Label>
                   <Input placeholder="John Doe" className="mt-1" />
                   <FieldError className="text-red-500 text-xs mt-1" />
                 </TextField>
 
                 <TextField isRequired name="email" type="email">
-                  <Label className="text-sm font-medium text-gray-700">Email</Label>
+                  <Label className="text-sm font-medium text-gray-700">
+                    Email
+                  </Label>
                   <Input placeholder="john@example.com" className="mt-1" />
                   <FieldError className="text-red-500 text-xs mt-1" />
                 </TextField>
 
                 <TextField name="image" type="url">
-                  <Label className="text-sm font-medium text-gray-700">Profile Image (Optional)</Label>
-                  <Input placeholder="https://example.com/image.jpg" className="mt-1" />
+                  <Label className="text-sm font-medium text-gray-700">
+                    Profile Image (Optional)
+                  </Label>
+                  <Input
+                    placeholder="https://example.com/image.jpg"
+                    className="mt-1"
+                  />
                   <FieldError className="text-red-500 text-xs mt-1" />
                 </TextField>
 
                 <TextField className="w-full" name="password" isRequired>
-                  <Label className="text-sm font-medium text-gray-700">Password</Label>
+                  <Label className="text-sm font-medium text-gray-700">
+                    Password
+                  </Label>
                   <InputGroup className="mt-1">
                     <InputGroup.Input
                       className="w-full"
@@ -93,7 +116,9 @@ const SignUpPage = () => {
                     <InputGroup.Suffix className="pr-0">
                       <Button
                         isIconOnly
-                        aria-label={isVisible ? "Hide password" : "Show password"}
+                        aria-label={
+                          isVisible ? "Hide password" : "Show password"
+                        }
                         size="sm"
                         variant="ghost"
                         onPress={() => setIsVisible(!isVisible)}
@@ -109,10 +134,10 @@ const SignUpPage = () => {
                   <FieldError className="text-red-500 text-xs mt-1" />
                 </TextField>
               </FieldGroup>
-              
+
               <Fieldset.Actions className="mt-8">
-                <Button 
-                  className="w-full bg-[#19A5C3] hover:bg-[#168a9f] text-white font-medium py-6 rounded-lg transition-colors" 
+                <Button
+                  className="w-full bg-[#19A5C3] hover:bg-[#168a9f] text-white font-medium py-6 rounded-lg transition-colors"
                   type="submit"
                 >
                   Create Account
@@ -120,10 +145,15 @@ const SignUpPage = () => {
               </Fieldset.Actions>
             </Fieldset>
           </Form>
+          <Separator className="my-6" />
+          <Button className="w-full" variant="tertiary" onClick={handleGoogleSignIn}>
+            <Icon icon="devicon:google" />
+            Sign in with Google
+          </Button>
         </div>
       </div>
-      
-      <ToastContainer 
+
+      <ToastContainer
         position="top-center"
         autoClose={3000}
         hideProgressBar={true}
