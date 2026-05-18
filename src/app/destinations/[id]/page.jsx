@@ -4,16 +4,13 @@ import Image from "next/image";
 import { Button, Card, Input } from "@heroui/react";
 import {
   ArrowLeft,
-  Pencil,
-  TrashBin,
   MapPin,
   Star,
   Calendar,
-  Check,
-  ArrowRight,
 } from "@gravity-ui/icons";
 import EditDestination from "@/components/ui/EditDestination";
 import DeletePackage from "@/components/ui/DeletePackage";
+import BookingCard from "@/components/ui/BookingCard";
 
 const DestinationDetailsPage = async ({ params }) => {
   const { id } = await params;
@@ -25,8 +22,6 @@ const DestinationDetailsPage = async ({ params }) => {
     destinationName,
     country,
     duration,
-    price,
-    departureDate,
     description,
     imageUrl,
   } = destination;
@@ -97,62 +92,7 @@ const DestinationDetailsPage = async ({ params }) => {
         </div>
 
         {/* Right Column: Booking Card */}
-        <div className="lg:col-span-1">
-          <Card
-            className="border border-gray-100 shadow-lg sticky top-8 rounded-xl"
-            shadow="sm"
-          >
-            <div className="flex flex-col gap-6 p-5">
-              {/* Price */}
-              <div>
-                <p className="text-gray-500 text-sm mb-1">Starting from</p>
-                <div className="flex items-end gap-1">
-                  <span className="text-4xl font-bold text-[#19A5C3]">
-                    ${price}
-                  </span>
-                  <span className="text-gray-500 mb-1 text-sm">per person</span>
-                </div>
-              </div>
-
-              {/* Date Picker (HeroUI Input fallback) */}
-              <Input
-                type="text"
-                variant="flat"
-                defaultValue={departureDate}
-                aria-label="Departure Date"
-                className="w-full bg-gray-50 rounded-lg"
-                classnames={{
-                  inputWrapper: "bg-gray-50 border-none shadow-none",
-                }}
-              />
-
-              {/* Book Button */}
-              <Button
-                color="primary"
-                className="w-full bg-[#19A5C3] text-white font-medium text-md py-6 rounded-lg"
-              >
-                Book Now
-                <ArrowRight className="w-5 h-5" />
-              </Button>
-
-              {/* Perks */}
-              <div className="flex flex-col gap-3 text-sm text-gray-500 mt-2">
-                <div className="flex items-center gap-3">
-                  <Check className="w-4 h-4 text-green-500" /> Free cancellation
-                  up to 7 days
-                </div>
-                <div className="flex items-center gap-3">
-                  <Check className="w-4 h-4 text-green-500" /> Travel insurance
-                  included
-                </div>
-                <div className="flex items-center gap-3">
-                  <Check className="w-4 h-4 text-green-500" /> 24/7 customer
-                  support
-                </div>
-              </div>
-            </div>
-          </Card>
-        </div>
+        <BookingCard destination={destination} />
       </div>
     </div>
   );

@@ -2,10 +2,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { Person } from "@gravity-ui/icons";
 import { usePathname } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
-import { Avatar } from "@heroui/react";
 import ProfileAvatar from "./ProfileAvatar";
 
 const Navbar = () => {
