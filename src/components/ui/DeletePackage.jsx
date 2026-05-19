@@ -11,7 +11,7 @@ const DeletePackage = ({ packageName, id }) => {
 
   const handleDelete = async () => {
     const {data} = await authClient.token();
-    const res = await fetch(`http://localhost:5000/destinations/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/destinations/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

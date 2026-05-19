@@ -18,7 +18,7 @@ const AddDestinationPage = () => {
 
         const {data: tokenData} = await authClient.token();
         
-        const res = await fetch("http://localhost:5000/destinations", {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/destinations`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

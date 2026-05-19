@@ -11,7 +11,7 @@ const DeleteBooking = ({ destinationName, bookingId }) => {
 
     const {data} = await authClient.token();
 
-    const res = await fetch(`http://localhost:5000/bookings/${bookingId}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/bookings/${bookingId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

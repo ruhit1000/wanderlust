@@ -42,7 +42,7 @@ const EditDestination = ({ destination }) => {
     const {data:tokenData} = await authClient.token();
 
     const res = await fetch(
-      `http://localhost:5000/destinations/${destination._id}`,
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/destinations/${destination._id}`,
       {
         method: "PATCH",
         headers: {
