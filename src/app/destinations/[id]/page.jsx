@@ -2,29 +2,28 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button, Card, Input } from "@heroui/react";
-import {
-  ArrowLeft,
-  MapPin,
-  Star,
-  Calendar,
-} from "@gravity-ui/icons";
+import { ArrowLeft, MapPin, Star, Calendar } from "@gravity-ui/icons";
 import EditDestination from "@/components/ui/EditDestination";
 import DeletePackage from "@/components/ui/DeletePackage";
 import BookingCard from "@/components/ui/BookingCard";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
 const DestinationDetailsPage = async ({ params }) => {
   const { id } = await params;
+  const { token } = await auth.api.getToken({
+    headers: await headers(),
+  });
 
   // Fetch data
-  const res = await fetch(`http://localhost:5000/destinations/${id}`);
+  const res = await fetch(`http://localhost:5000/destinations/${id}`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  });
   const destination = await res.json();
-  const {
-    destinationName,
-    country,
-    duration,
-    description,
-    imageUrl,
-  } = destination;
+  const { destinationName, country, duration, description, imageUrl } =
+    destination;
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-gray-800">
