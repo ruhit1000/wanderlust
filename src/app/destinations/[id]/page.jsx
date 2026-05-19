@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Button, Card, Input } from "@heroui/react";
 import { ArrowLeft, MapPin, Star, Calendar } from "@gravity-ui/icons";
 import EditDestination from "@/components/ui/EditDestination";
 import DeletePackage from "@/components/ui/DeletePackage";
